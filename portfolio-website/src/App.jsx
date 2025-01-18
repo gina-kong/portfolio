@@ -1,33 +1,75 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useRef } from 'react'
+import about from './assets/about.png'
+import contact from './assets/contact.png'
+import photos from './assets/photos.png'
+import projects from './assets/projects.png'
 import './App.css'
+import { scaleValue } from "./utils/scale";
+
+const maxAdditionalSize = 5;
 
 function App() {
-  const [count, setCount] = useState(0)
+  const dockRef = useRef(null);
+
+  const handleAppHover = (ev) => {
+    if (!dockRef.current) return;
+
+    const mousePosition = ev.clientX;
+    const iconPositionLeft = ev.currentTarget.getBoundingClientRect().left;
+    const iconWidth = ev.currentTarget.getBoundingClientRect().width;
+
+    const cursorDistance = (mousePosition - iconPositionLeft) / iconWidth;
+    const offsetPixels = scaleValue(
+      cursorDistance,
+      [0, 1],
+      [maxAdditionalSize * -1, maxAdditionalSize]
+    );
+
+    dockRef.current.style.setProperty(
+      "--dock-offset-left",
+      `${offsetPixels * -1}px`
+    );
+
+    dockRef.current.style.setProperty(
+      "--dock-offset-right",
+      `${offsetPixels}px`
+    );
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="page">
+        <div className="container">
+          <nav ref={dockRef} className="dock">
+            <ul>
+              <li className="app" onMouseMove={handleAppHover}>
+                <a href="#" target="_blank">
+                  <img src={about} className="logo" alt="about logo" />
+                  <span className="tooltip">About Me</span>
+                </a>
+              </li>
+              <li className="app" onMouseMove={handleAppHover}>
+                <a href="#" target="_blank">
+                  <img src={contact} className="logo" alt="contact logo" />
+                  <span className="tooltip">Contact</span>
+                </a>
+              </li>
+              <li className="app" onMouseMove={handleAppHover}>
+                <a href="#" target="_blank">
+                  <img src={photos} className="logo" alt="photos logo" />
+                  <span className="tooltip">Gallery</span>
+                </a>
+              </li>
+              <li className="app" onMouseMove={handleAppHover}>
+                <a href="#" target="_blank">
+                  <img src={projects} className="logo" alt="projects logo" />
+                  <span className="tooltip">Projects</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
