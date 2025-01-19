@@ -3,6 +3,8 @@ import about from '../assets/about.png'
 import contact from '../assets/contact.png'
 import photos from '../assets/photos.png'
 import projects from '../assets/projects.png'
+import notes from '../assets/notes.png'
+import paint from '../assets/paint.png'
 import { scaleValue } from "../utils/scale";
 
 const maxAdditionalSize = 5;
@@ -66,20 +68,14 @@ export const Dock = () => {
             </li>
             <li className="app" onMouseMove={handleAppHover}>
               <a href="#" target="_blank">
-                <img src={projects} className="logo" alt="projects logo" />
-                <span className="tooltip">Projects</span>
+                <img src={notes} className="logo" alt="notes logo" />
+                <span className="tooltip">Notes</span>
               </a>
             </li>
             <li className="app" onMouseMove={handleAppHover}>
               <a href="#" target="_blank">
-                <img src={projects} className="logo" alt="projects logo" />
-                <span className="tooltip">Projects</span>
-              </a>
-            </li>
-            <li className="app" onMouseMove={handleAppHover}>
-              <a href="#" target="_blank">
-                <img src={projects} className="logo" alt="projects logo" />
-                <span className="tooltip">Projects</span>
+                <img src={paint} className="logo" alt="paint logo" />
+                <span className="tooltip">Paint</span>
               </a>
             </li>
           </ul>
