@@ -109,19 +109,15 @@ export const Notepad = () => {
     },
   ]
 
-  const onClick = (e) => {
-    console.log('click', e);
-  }
-
   return (
-    <Draggable handle="header">
+    <Draggable bounds=".boundary">
       <div className="window">
         <header>
           <span className="dot close"></span>
           <span className="dot minimise"></span>
           <span className="dot maximise"></span>
         </header>
-        <Menu onClick={onClick} mode="horizontal" items={items} />
+        <Menu mode="horizontal" items={items} />
       </div>
     </Draggable>
   )

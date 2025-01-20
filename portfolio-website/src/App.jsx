@@ -1,13 +1,15 @@
 import './App.css'
 import { Dock } from './features/Dock'
-import { Window } from './features/Notepad'
+import { Notepad } from './features/Notepad'
 
 function App() {
 
   return (
     <>
-      <Window />
-      <Dock />
+      <div className="boundary">
+        <Notepad />
+        <Dock />
+      </div>
     </>
   )
 }
