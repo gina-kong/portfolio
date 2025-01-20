@@ -102,3 +102,51 @@
   box-shadow:rgba(0, 0, 0, 0.17) 0px 12px 8px 1px;
   white-space: nowrap;
 }
+
+.window {
+  position: absolute;
+  color: black;
+  background-color: white;
+  min-height: 480px;
+  min-width: 560px;
+  border-radius: 12px;
+  bottom: 50%;
+  right: 50%;
+  padding: 0;
+  margin: 0;
+  box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.25);
+}
+
+header {
+  height: 30px;
+  border-bottom: 1px solid #bbb;
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 12px 12px 0 0;
+  background-color: #ececec;
+}
+
+.dot {
+  height: 12px;
+  width: 12px;
+  margin: 0 5px;
+  border-radius: 50%;
+  border: 1px solid;
+}
+
+.close {
+  background-color: #f65753;
+  border-color: #e04a3b;
+}
+
+.minimise {
+  background-color: #f9bc3f;
+  border-color: #df9d36;
+}
+
+.maximise {
+  background-color: #36c84b;
+  border-color: #2aa839;
+}
