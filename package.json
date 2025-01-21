@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "antd": "^5.23.1",
-    "react-draggable": "^4.4.6"
+    "react-draggable": "^4.4.6",
+    "react-rnd": "^10.4.14"
   }
 }

@@ -1,14 +1,19 @@
 import { Menu, Input } from "antd";
-import Draggable from 'react-draggable';
+import { Rnd } from "react-rnd"
 import { useEffect, useRef, useState } from "react";
 
 const { TextArea } = Input;
-const rowSize = 28;
+const rowSize = 22.5;
+const headerOffset = 30 + 46;
+
 export const Notepad = () => {
-  // findDomNode() is deprecated in Strict Mode - required by react-draggable
-  const nodeRef = useRef(null);
-  const [windowHeight, setWindowHeight] = useState(0);
+  const nodeRef = useRef(null)
   const [maxRows, setMaxRows] = useState(1)
+  const initialWidth = 560;
+  const initialHeight = 480;
+
+  const centerX = (window.innerWidth - initialWidth) / 2;
+  const centerY = (window.innerHeight - initialHeight) / 2;
 
   const items = [
     {
@@ -116,29 +121,54 @@ export const Notepad = () => {
     },
   ]
 
+  // Function to update maxRows based on height
+  const updateMaxRows = (height) => {
+    const rows = Math.floor((height - headerOffset) / rowSize);
+    setMaxRows(rows);
+    console.log(`${height}px -> ${rows} rows`);
+  };
+
+  // Update window height
   useEffect(() => {
-    // Update window height
-    const updateHeight = () => {
-      if (nodeRef.current) {
-        const height = nodeRef.current.offsetHeight;
-        setWindowHeight(height);
-        const rows = Math.floor(height / rowSize)
-        setMaxRows(rows);
-        console.log(`${height}px -> ${rows} rows`)
-      }
-    };
-
-    updateHeight();
-    window.addEventListener('resize', updateHeight);
-
-    return () => {
-      window.removeEventListener('resize', updateHeight);
+    if (nodeRef.current) {
+      const height = nodeRef.current.offsetHeight;
+      updateMaxRows(height);
     }
-  })
+  }, []);
+
+  const handleResizeStop = () => {
+    if (nodeRef.current) {
+      const height = nodeRef.current.offsetHeight;
+      updateMaxRows(height);
+    }
+  };
 
   return (
-    <Draggable bounds=".boundary" nodeRef={nodeRef} handle=".draggableHeader">
-      <div className="window" ref={nodeRef}>
+    <Rnd
+      default={{
+        x: centerX,
+        y: centerY,
+        width: initialWidth,
+        height: initialHeight,
+      }}
+      minWidth={initialWidth}
+      minHeight={initialHeight}
+      bounds="body"
+      dragHandleClassName="draggableHeader"
+      resizeHandleClasses={{
+        topLeft: 'topLeft',
+        topRight: 'topRight',
+        bottomLeft: 'bottomLeft',
+        bottomRight: 'bottomRight',
+      }}
+      style={{
+        "backgroundColor": "white",
+        "borderRadius": "12px",
+        "boxShadow": "0px 0px 15px -2px rgba(0, 0, 0, 0.25)",
+      }}
+      onResizeStop={handleResizeStop}
+    >
+      <div ref={nodeRef} className="window" style={{"height": "100%", "width": "100%"}}>
         <header>
           <div className="trafficLights">
             <span className="dot close"></span>
@@ -150,7 +180,7 @@ export const Notepad = () => {
         <Menu mode="horizontal" items={items} />
         <TextArea placeholder="Enter Text Here" autoSize={{ maxRows: maxRows }} style={{"border": "none", "backgroundColor": "#cecece"}}/>
       </div>
-    </Draggable>
+    </Rnd>
   )
 }
 
