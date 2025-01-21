@@ -17,9 +17,11 @@
 
 body {
   margin: 0;
+  padding: 0;
   display: flex;
   place-items: center;
   height: 100vh;
+  overflow: hidden;
 }
 
 /* @media (prefers-color-scheme: light) {

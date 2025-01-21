@@ -14,7 +14,7 @@ export const Notepad = () => {
 
   const centerX = (window.innerWidth - initialWidth) / 2;
   const centerY = (window.innerHeight - initialHeight) / 2;
-
+  
   const items = [
     {
       key: 'sub1',
@@ -125,9 +125,9 @@ export const Notepad = () => {
   const updateMaxRows = (height) => {
     const rows = Math.floor((height - headerOffset) / rowSize);
     setMaxRows(rows);
-    console.log(`${height}px -> ${rows} rows`);
+    // console.log(`${height}px -> ${rows} rows`);
   };
-
+  
   // Update window height
   useEffect(() => {
     if (nodeRef.current) {
@@ -142,10 +142,10 @@ export const Notepad = () => {
       updateMaxRows(height);
     }
   };
-
+  
   return (
     <Rnd
-      default={{
+    default={{
         x: centerX,
         y: centerY,
         width: initialWidth,
@@ -178,7 +178,7 @@ export const Notepad = () => {
           <div className="draggableHeader" />
         </header>
         <Menu mode="horizontal" items={items} />
-        <TextArea placeholder="Enter Text Here" autoSize={{ maxRows: maxRows }} style={{"border": "none", "backgroundColor": "#cecece"}}/>
+        <TextArea placeholder="Text Here" autoSize={{ maxRows: maxRows }} style={{"border": "none", "backgroundColor": "#cecece"}}/>
       </div>
     </Rnd>
   )

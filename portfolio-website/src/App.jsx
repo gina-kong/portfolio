@@ -6,10 +6,8 @@ function App() {
 
   return (
     <>
-      <div className="boundary">
-        <Notepad />
-        <Dock />
-      </div>
+      <Notepad />
+      <Dock />
     </>
   )
 }
