@@ -1,6 +1,9 @@
 import { Menu, Input } from "antd";
 import { Rnd } from "react-rnd"
 import { useEffect, useRef, useState } from "react";
+import close from "../assets/close-icon.svg"
+import minimise from "../assets/minimise-icon.svg"
+import maximise from "../assets/maximise-icon.svg"
 
 const { TextArea } = Input;
 const rowSize = 22.5;
@@ -14,6 +17,8 @@ export const Notepad = () => {
 
   const centerX = (window.innerWidth - initialWidth) / 2;
   const centerY = (window.innerHeight - initialHeight) / 2;
+
+  const [title, setTitle] = useState("Untitled")
   
   const items = [
     {
@@ -142,6 +147,19 @@ export const Notepad = () => {
       updateMaxRows(height);
     }
   };
+
+  const handleClose = () => {
+    alert('CLOSE')
+  }
+
+  const handleMinimise = () => {
+    alert('MINIMISE')
+  }
+
+  const handleMaximise = () => {
+    alert('MAXIMISE')
+  }
+  
   
   return (
     <Rnd
@@ -171,11 +189,19 @@ export const Notepad = () => {
       <div ref={nodeRef} className="window" style={{"height": "100%", "width": "100%"}}>
         <header>
           <div className="trafficLights">
-            <span className="dot close"></span>
-            <span className="dot minimise"></span>
-            <span className="dot maximise"></span>
+            <span className="dot close" onClick={handleClose}>
+              <img className="trafficLightsIcons closeIcon" src={close}/>
+            </span>
+            <span className="dot minimise" onClick={handleMinimise}>
+              <img className="trafficLightsIcons minimiseIcon" src={minimise}/>
+            </span>
+            <span className="dot maximise" onClick={handleMaximise}>
+              <img className="trafficLightsIcons maximiseIcon" src={maximise}/>
+            </span>
           </div>
-          <div className="draggableHeader" />
+          <div className="draggableHeader">
+            <p>{title} - Notepad</p>
+          </div>
         </header>
         <Menu mode="horizontal" items={items} />
         <TextArea placeholder="Text Here" autoSize={{ maxRows: maxRows }} style={{"border": "none", "backgroundColor": "#cecece"}}/>

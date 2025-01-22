@@ -123,21 +123,53 @@ header {
 .trafficLights {
   display: flex;
   flex-direction: row;
+  gap: 8px;
   align-items: center;
-  margin: 5px;
+  margin: 8px;
+}
+
+img {
+  object-fit: cover;
+}
+
+.trafficLights:hover img.trafficLightsIcons {
+  opacity: 1;
+}
+
+.trafficLightsIcons {
+  opacity: 0;
+}
+
+img.closeIcon {
+  max-width: calc(100% - 5px);
+}
+
+img.minimiseIcon {
+  max-width: calc(100% - 3px);
+}
+
+img.maximiseIcon {
+  max-width: calc(100% - 4px);
 }
 
 .draggableHeader {
   cursor: move;
   border-radius: 0 12px 0 0;
   height: 100%;
-  width: calc(100% - 80px);
+  width: calc(100% - 58px);
+  padding-right: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
 }
 
 .dot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 12px;
   width: 12px;
-  margin: 0 5px;
   border-radius: 50%;
   border: 1px solid;
 }
