@@ -53,12 +53,24 @@ img.maximiseIcon {
   border-color: #e04a3b;
 }
 
+.close:hover {
+  cursor: pointer;
+}
+
 .minimise {
   background-color: #f9bc3f;
   border-color: #df9d36;
 }
 
+.minimise:hover {
+  cursor: pointer;
+}
+
 .maximise {
   background-color: #36c84b;
   border-color: #2aa839;
+}
+
+.maximise:hover {
+  cursor: not-allowed;
 }

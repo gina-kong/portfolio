@@ -10,7 +10,7 @@ const headerOffset = 30 + 46;
 
 const Notepad = () => {
   const nodeRef = useRef(null)
-  const [maxRows, setMaxRows] = useState(1)
+  const [maxRows, setMaxRows] = useState(17)
   const initialWidth = 560;
   const initialHeight = 480;
 
@@ -69,7 +69,7 @@ const Notepad = () => {
       <div ref={nodeRef} className="window" style={{"height": "100%", "width": "100%"}}>
         <TitleBar title={title} appName="Notepad"/>
         <ToolBar />
-        <TextArea placeholder="Text Here" autoSize={{ maxRows: maxRows }} style={{"border": "none", "backgroundColor": "#cecece"}}/>
+        <TextArea placeholder="Text Here" autoSize={{ minRows: 17, maxRows: maxRows }} style={{"border": "none", "backgroundColor": "#cecece"}}/>
       </div>
     </Rnd>
   )
