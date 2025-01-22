@@ -1,0 +1,64 @@
+.trafficLights {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  margin: 8px;
+}
+
+.trafficLights:hover img.trafficLightsIcons {
+  opacity: 1;
+}
+
+.trafficLightsIcons {
+  opacity: 0;
+}
+
+img.closeIcon {
+  max-width: calc(100% - 5px);
+}
+
+img.minimiseIcon {
+  max-width: calc(100% - 3px);
+}
+
+img.maximiseIcon {
+  max-width: calc(100% - 4px);
+}
+
+.draggableHeader {
+  cursor: move;
+  border-radius: 0 12px 0 0;
+  height: 100%;
+  width: calc(100% - 58px);
+  padding-right: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+}
+
+.dot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  border: 1px solid;
+}
+
+.close {
+  background-color: #f65753;
+  border-color: #e04a3b;
+}
+
+.minimise {
+  background-color: #f9bc3f;
+  border-color: #df9d36;
+}
+
+.maximise {
+  background-color: #36c84b;
+  border-color: #2aa839;
+}

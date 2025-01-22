@@ -1,6 +1,6 @@
 import './App.css'
-import { Dock } from './features/Dock'
-import { Notepad } from './features/Notepad'
+import Dock from './features/dock/Dock'
+import Notepad from './features/notepad/Notepad'
 
 function App() {
 

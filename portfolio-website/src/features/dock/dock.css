@@ -1,0 +1,101 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  justify-content: end;
+  align-items: center;
+  margin: 0 0;
+}
+
+.dock {
+  margin: 0 0 12px 0;
+  border-radius: 24px;
+  padding: 6px 6px;
+  background-color: rgba(255, 255, 255, 0.3);
+  box-shadow:rgba(255, 255, 255, 0.17) 0px 0px 0px 1px inset;
+  backdrop-filter: blur(189.942px);
+  box-shadow: 0px 0px 25px -2px rgba(0, 0, 0, 0.25);
+}
+
+.dock ul {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.app {
+  width: 70px;
+  height: 70px;
+  position: relative;
+  transition: width, height, margin-top, cubic-bezier(0.25, 1, 0.5, 1) 100ms;
+  padding: 4px;
+}
+
+.app:hover {
+  width: 100px;
+  height: 100px;
+  margin-top: -30px;
+}
+
+/* Right side */
+.app:hover + .app {
+  width: calc(90px + var(--dock-offset-right, 0px));
+  height: calc(90px + var(--dock-offset-right, 0px));
+  margin-top: calc(-20px + var(--dock-offset-right, 0px) * -1);
+}
+
+.app:hover + .app + .app {
+  width: calc(80px + var(--dock-offset-right, 0px));
+  height: calc(80px + var(--dock-offset-right, 0px));
+  margin-top: calc(-10px + var(--dock-offset-right, 0px) * -1);
+}
+
+/* Left side */
+.app:has(+ .app:hover){
+  width: calc(90px + var(--dock-offset-left, 0px));
+  height: calc(90px + var(--dock-offset-left, 0px));
+  margin-top: calc(-20px + var(--dock-offset-left, 0px) * -1);
+}
+
+.app:has(+ .app + .app:hover){
+  width: calc(80px + var(--dock-offset-left, 0px));
+  height: calc(80px + var(--dock-offset-left, 0px));
+  margin-top: calc(-10px + var(--dock-offset-left, 0px) * -1);
+}
+
+.app img {
+  width: 100%;
+  height: 100%;
+}
+
+.app a {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 12px;
+  color: #fff;
+}
+
+.app:hover .tooltip,
+.app:focus-within .tooltip {
+  opacity: 1;
+}
+
+.tooltip {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: ease-in opacity 100ms;
+  display: block;
+  background: rgba(0,0,0,0.58);
+  padding: 8px;
+  border-radius: 12px;
+  height: 22px;
+  width: auto;
+  box-shadow:rgba(0, 0, 0, 0.17) 0px 12px 8px 1px;
+  white-space: nowrap;
+}

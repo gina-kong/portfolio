@@ -1,15 +1,16 @@
 import { useRef } from 'react'
-import about from '../assets/about.png'
-import contact from '../assets/contact.png'
-import photos from '../assets/photos.png'
-import projects from '../assets/projects.png'
-import notes from '../assets/notes.png'
-import paint from '../assets/paint.png'
-import { scaleValue } from '../utils/scale';
+import about from '../../assets/about.png'
+import contact from '../../assets/contact.png'
+import photos from '../../assets/photos.png'
+import projects from '../../assets/projects.png'
+import notes from '../../assets/notes.png'
+import paint from '../../assets/paint.png'
+import { scaleValue } from '../../utils/scale';
+import "./dock.css"
 
 const maxAdditionalSize = 5;
 
-export const Dock = () => {
+const Dock = () => {
   const dockRef = useRef(null);
 
   const handleAppHover = (ev) => {
@@ -84,3 +85,5 @@ export const Dock = () => {
     </div>
   )
 }
+
+export default Dock;
