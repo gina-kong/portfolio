@@ -30,7 +30,7 @@ const TitleBar = ({ title, appName }) => {
         </span>
       </div>
       <div className="draggableHeader">
-        <p>{title} - {appName}</p>
+        <p>{title}{appName}</p>
       </div>
     </header>
   )

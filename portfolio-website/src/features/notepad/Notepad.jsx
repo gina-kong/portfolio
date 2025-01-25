@@ -67,7 +67,7 @@ const Notepad = () => {
       onResizeStop={handleResizeStop}
     >
       <div ref={nodeRef} className="window" style={{"height": "100%", "width": "100%"}}>
-        <TitleBar title={title} appName="Notepad"/>
+        <TitleBar title={title} appName=" - Notepad"/>
         <ToolBar />
         <TextArea placeholder="Text Here" autoSize={{ minRows: 17, maxRows: maxRows }} style={{"border": "none", "backgroundColor": "#cecece"}}/>
       </div>
