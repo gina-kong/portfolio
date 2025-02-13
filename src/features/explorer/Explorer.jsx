@@ -6,8 +6,13 @@ import { IoMdWifi } from "react-icons/io";
 import { IoDocumentOutline } from "react-icons/io5";
 import { BsWindowDesktop } from "react-icons/bs";
 import { MdOutlineDownloadForOffline } from "react-icons/md";
+import { useVisibility } from "../../context/VisibilityContext";
 
 const Explorer = () => {
+  const { visibility } = useVisibility();
+
+  if (!visibility.Explorer) return null;
+
   const initialWidth = 900;
   const initialHeight = 520;
   const centerX = (window.innerWidth - initialWidth) / 2;
@@ -124,7 +129,7 @@ const Explorer = () => {
 
   return (
     <Rnd
-    default={{
+      default={{
         x: centerX,
         y: centerY,
         width: initialWidth,
@@ -146,8 +151,7 @@ const Explorer = () => {
         "boxShadow": "0px 0px 15px -2px rgba(0, 0, 0, 0.25)",
       }}
     >
-      {/* <div className="window" style={{"height": "100%", "width": "100%"}}> */}
-        <TitleBar title={title} appName=""/>
+      <TitleBar title={title} appName="Explorer"/>
       <ConfigProvider
         theme={{
           components: {
@@ -194,8 +198,7 @@ const Explorer = () => {
             </Layout>
           </Layout>
         </Layout>
-    </ConfigProvider>
-      {/* </div> */}
+      </ConfigProvider>
     </Rnd>
   )
 }

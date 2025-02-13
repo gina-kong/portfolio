@@ -2,10 +2,14 @@ import close from "../assets/close-icon.svg"
 import minimise from "../assets/minimise-icon.svg"
 import maximise from "../assets/maximise-icon.svg"
 import "./titlebar.css"
+import { useVisibility } from "../context/VisibilityContext"
 
 const TitleBar = ({ title, appName }) => {
+
+  const { closeComponent } = useVisibility();
+
   const handleClose = () => {
-    alert('CLOSE')
+    closeComponent(appName);
   }
 
   const handleMinimise = () => {
@@ -30,7 +34,7 @@ const TitleBar = ({ title, appName }) => {
         </span>
       </div>
       <div className="draggableHeader">
-        <p>{title}{appName}</p>
+        <p>{title} - {appName}</p>
       </div>
     </header>
   )

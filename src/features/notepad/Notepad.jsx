@@ -3,6 +3,7 @@ import { Rnd } from "react-rnd"
 import { useEffect, useRef, useState } from "react";
 import ToolBar from "./ToolBar";
 import TitleBar from "../../components/Titlebar";
+import { useVisibility } from "../../context/VisibilityContext";
 
 const { TextArea } = Input;
 const rowSize = 22.5;
@@ -11,19 +12,19 @@ const headerOffset = 30 + 46;
 const Notepad = () => {
   const nodeRef = useRef(null)
   const [maxRows, setMaxRows] = useState(17)
+  const [title, setTitle] = useState("Untitled")
+  const { visibility } = useVisibility();
+
   const initialWidth = 560;
   const initialHeight = 480;
-
+  
   const centerX = (window.innerWidth - initialWidth) / 2;
   const centerY = (window.innerHeight - initialHeight) / 2;
-
-  const [title, setTitle] = useState("Untitled")
-
+  
   // Function to update maxRows based on height
   const updateMaxRows = (height) => {
     const rows = Math.floor((height - headerOffset) / rowSize);
     setMaxRows(rows);
-    // console.log(`${height}px -> ${rows} rows`);
   };
   
   // Update window height
@@ -33,7 +34,7 @@ const Notepad = () => {
       updateMaxRows(height);
     }
   }, []);
-
+  
   const handleResizeStop = () => {
     if (nodeRef.current) {
       const height = nodeRef.current.offsetHeight;
@@ -41,7 +42,7 @@ const Notepad = () => {
     }
   };
   
-  return (
+  return visibility.Notepad ? (
     <Rnd
     default={{
         x: centerX,
@@ -67,12 +68,12 @@ const Notepad = () => {
       onResizeStop={handleResizeStop}
     >
       <div ref={nodeRef} className="window" style={{"height": "100%", "width": "100%"}}>
-        <TitleBar title={title} appName=" - Notepad"/>
+        <TitleBar title={title} appName="Notepad"/>
         <ToolBar />
         <TextArea placeholder="Text Here" autoSize={{ minRows: 17, maxRows: maxRows }} style={{"border": "none", "backgroundColor": "#cecece"}}/>
       </div>
     </Rnd>
-  )
+  ) : null;
 }
 
 export default Notepad;

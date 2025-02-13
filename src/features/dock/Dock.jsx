@@ -7,11 +7,13 @@ import notes from '../../assets/notes.png'
 import paint from '../../assets/paint.png'
 import { scaleValue } from '../../utils/scale';
 import "./dock.css"
+import { useVisibility } from '../../context/VisibilityContext'
 
 const maxAdditionalSize = 5;
 
 const Dock = () => {
   const dockRef = useRef(null);
+  const { openComponent } = useVisibility();
 
   const handleAppHover = (ev) => {
     if (!dockRef.current) return;
@@ -43,41 +45,29 @@ const Dock = () => {
       <div className="container">
         <nav ref={dockRef} className="dock">
           <ul>
-            <li className="app" onMouseMove={handleAppHover}>
-              <a href="#" target="_blank">
+            <li className="app" onMouseMove={handleAppHover} onClick={() => openComponent("Explorer")}>
                 <img src={about} className="logo" alt="about logo" />
                 <span className="tooltip">About Me</span>
-              </a>
             </li>
             <li className="app" onMouseMove={handleAppHover}>
-              <a href="#" target="_blank">
                 <img src={contact} className="logo" alt="contact logo" />
                 <span className="tooltip">Contact</span>
-              </a>
             </li>
             <li className="app" onMouseMove={handleAppHover}>
-              <a href="#" target="_blank">
                 <img src={photos} className="logo" alt="photos logo" />
                 <span className="tooltip">Gallery</span>
-              </a>
             </li>
             <li className="app" onMouseMove={handleAppHover}>
-              <a href="#" target="_blank">
                 <img src={projects} className="logo" alt="projects logo" />
                 <span className="tooltip">Projects</span>
-              </a>
             </li>
-            <li className="app" onMouseMove={handleAppHover}>
-              <a href="#" target="_blank">
+            <li className="app" onMouseMove={handleAppHover} onClick={() => openComponent("Notepad")}>
                 <img src={notes} className="logo" alt="notepad logo" />
                 <span className="tooltip">Notepad</span>
-              </a>
             </li>
             <li className="app" onMouseMove={handleAppHover}>
-              <a href="#" target="_blank">
                 <img src={paint} className="logo" alt="paint logo" />
                 <span className="tooltip">Paint</span>
-              </a>
             </li>
           </ul>
         </nav>

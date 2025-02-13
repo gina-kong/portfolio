@@ -4,14 +4,15 @@ import Notepad from './features/notepad/Notepad'
 import Explorer from './features/explorer/Explorer'
 import { useEffect, useState } from 'react';
 import Loader from './features/Loader';
+import { VisibilityProvider } from './context/VisibilityContext';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   
   useEffect(() => {
-    setTimeout(() => {
+    // setTimeout(() => {
       setIsLoading(false);
-    }, 3000);
+    // }, 3000);
   }, []);
 
   return (
@@ -19,11 +20,11 @@ function App() {
     {isLoading ? (
       <Loader />
     ) : (
-        <>
+        <VisibilityProvider>
           <Notepad />
           <Dock />
           <Explorer />
-        </>
+        </VisibilityProvider>
       )}
     </>
   )
