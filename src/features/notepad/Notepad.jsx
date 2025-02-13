@@ -13,7 +13,7 @@ const Notepad = () => {
   const nodeRef = useRef(null)
   const [maxRows, setMaxRows] = useState(17)
   const [title, setTitle] = useState("Untitled")
-  const { visibility } = useVisibility();
+  const { visibility, getZIndex, focusComponent } = useVisibility();
 
   const initialWidth = 560;
   const initialHeight = 480;
@@ -44,7 +44,7 @@ const Notepad = () => {
   
   return visibility.Notepad ? (
     <Rnd
-    default={{
+      default={{
         x: centerX,
         y: centerY,
         width: initialWidth,
@@ -64,8 +64,10 @@ const Notepad = () => {
         "backgroundColor": "white",
         "borderRadius": "12px",
         "boxShadow": "0px 0px 15px -2px rgba(0, 0, 0, 0.25)",
+        "zIndex": getZIndex("Notepad")
       }}
       onResizeStop={handleResizeStop}
+      onMouseDown={() => focusComponent("Notepad")}
     >
       <div ref={nodeRef} className="window" style={{"height": "100%", "width": "100%"}}>
         <TitleBar title={title} appName="Notepad"/>

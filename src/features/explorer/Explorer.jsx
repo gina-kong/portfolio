@@ -9,7 +9,7 @@ import { MdOutlineDownloadForOffline } from "react-icons/md";
 import { useVisibility } from "../../context/VisibilityContext";
 
 const Explorer = () => {
-  const { visibility } = useVisibility();
+  const { visibility, getZIndex, focusComponent } = useVisibility();
 
   if (!visibility.Explorer) return null;
 
@@ -149,7 +149,9 @@ const Explorer = () => {
         "backgroundColor": "white",
         "borderRadius": "12px",
         "boxShadow": "0px 0px 15px -2px rgba(0, 0, 0, 0.25)",
+        "zIndex": getZIndex("Explorer"),
       }}
+      onMouseDown={() => focusComponent("Explorer")}
     >
       <TitleBar title={title} appName="Explorer"/>
       <ConfigProvider
