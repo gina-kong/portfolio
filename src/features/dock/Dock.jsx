@@ -13,7 +13,7 @@ const maxAdditionalSize = 5;
 
 const Dock = () => {
   const dockRef = useRef(null);
-  const { openComponent } = useVisibility();
+  const { openComponent, focusComponent, getZIndex } = useVisibility();
 
   const handleAppHover = (ev) => {
     if (!dockRef.current) return;
@@ -42,9 +42,9 @@ const Dock = () => {
 
   return (
     <div className="page">
-      <div className="container">
+      <div className="container" style={{"zIndex": getZIndex("Dock")}}>
         <nav ref={dockRef} className="dock">
-          <ul>
+          <ul onMouseEnter={() => focusComponent("Dock")}>
             <li className="app" onMouseMove={handleAppHover} onClick={() => openComponent("Explorer")}>
                 <img src={about} className="logo" alt="about logo" />
                 <span className="tooltip">About Me</span>

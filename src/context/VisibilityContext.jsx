@@ -10,7 +10,7 @@ export function VisibilityProvider({ children }) {
 
   // Ordered list of component windows to track z-index
   // Focused windows are pushed to the end of the array (i.e. highest index)
-  const [zIndexList, setZIndexList] = useState([])
+  const [zIndexList, setZIndexList] = useState(["Dock"])
 
   /**
    * Open a component to make it visible and assign it the highest z-index so it
@@ -25,7 +25,6 @@ export function VisibilityProvider({ children }) {
       setZIndexList(() => {
         const newList = [...zIndexList];
         newList.push(component);
-        console.log(newList)
         return newList;
       })
     }
@@ -48,7 +47,6 @@ export function VisibilityProvider({ children }) {
     
     setZIndexList(() => {
       const newList = removeFromZIndexList(component);
-      console.log(newList);
       return newList;
     });
   }
@@ -62,7 +60,6 @@ export function VisibilityProvider({ children }) {
     setZIndexList(() => {
       const newList = removeFromZIndexList(component);
       newList.push(component);
-      console.log(newList);
       return newList;
     })
   }
@@ -84,6 +81,7 @@ export function VisibilityProvider({ children }) {
       openComponent,
       closeComponent,
       focusComponent,
+      getHighestZIndex: () => zIndexList.length,
       getZIndex: (component) => zIndexList.indexOf(component) || 0
     }}>
       {children}
